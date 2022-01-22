@@ -23,9 +23,9 @@ module.exports = class UptimeKumaApi extends EventEmitter {
         if (this._pushTimer)
             this._pushTimer.cancel();
         this._pushTimer = setInterval(() => {
-            this.push(this.baseURL+"api/push/"+code);
+            this.push(this._baseURL+"api/push/"+code);
         }, interval * 1000);
-        this.push(this.baseURL+"api/push/"+code);
+        this.push(this._baseURL+"api/push/"+code);
     }
 
     cancelPushing() {
