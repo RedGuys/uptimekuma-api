@@ -8,7 +8,7 @@ export default class UptimeKumaApi {
     on(event: "pushSuccessful", handle: (url: string) => void);
     on(event: "pushFailed", handle: (url: string, err: Error) => void);
 
-    status(): Promise<[{
+    status(name?:string): Promise<[{
         id: number,
         name: string,
         weight: number, monitors: [{

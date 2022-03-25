@@ -33,11 +33,11 @@ module.exports = class UptimeKumaApi extends EventEmitter {
             this._pushTimer.cancel();
     }
 
-    async status() {
-        let resp = await client.get(this._baseURL + "api/status-page/monitor-list");
-        let heartBeats = (await client.get(this._baseURL + "api/status-page/heartbeat")).data;
+    async status(name = "default") {
+        let resp = await client.get(this._baseURL + "api/status-page/"+name);
+        let heartBeats = (await client.get(this._baseURL + "api/status-page/heartbeat/"+name)).data;
         let result = [];
-        for (let srcCategory of resp.data) {
+        for (let srcCategory of resp.data.publicGroupList) {
             let targetCategory = {id: srcCategory.id, name: srcCategory.name, weight: srcCategory.weight, monitors: []};
             for (let srcMonitor of srcCategory.monitorList) {
                 targetCategory.monitors.push({
