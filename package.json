@@ -1,15 +1,22 @@
 {
   "name": "uptimekuma-api",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "scripts": {
     "test": "node test/test.js"
   },
-  "keywords": ["uptime","kuma"],
+  "keywords": [
+    "uptime",
+    "kuma"
+  ],
   "author": "RedGuys",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RedGuys/uptimekuma-api"
+  },
   "dependencies": {
     "axios": "^0.21.1"
   }
