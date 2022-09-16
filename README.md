@@ -1,6 +1,6 @@
 # UptimeKuma-api
 
-Supports UptimeKuma versions from 1.13.1 to 1.14.1
+Supports UptimeKuma versions from 1.13.1 to 1.18.0
 
 ## Installation
 
