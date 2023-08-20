@@ -12,7 +12,9 @@ module.exports = class UptimeKumaApi extends EventEmitter {
     }
 
     push(url) {
-        client.get(url).then(res => {
+        let params = {status:"up",msg:"OK",ping:undefined};
+        this.emit("prePush", url, params);
+        client.get(url,{params}).then(res => {
             this.emit("pushSuccessful", url);
         }).catch(err => {
             this.emit("pushFailed", url, err);
