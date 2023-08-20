@@ -3,7 +3,7 @@ const EventEmitter = require("events");
 
 module.exports = class UptimeKumaApi extends EventEmitter {
 
-    _pushTimer;
+    _pushTimers = {};
     _baseURL;
 
     constructor(baseURL = "") {
@@ -22,17 +22,25 @@ module.exports = class UptimeKumaApi extends EventEmitter {
     }
 
     startPushing(code, interval = 60) {
-        if (this._pushTimer)
-            this._pushTimer.cancel();
-        this._pushTimer = setInterval(() => {
+        if (this._pushTimers[code])
+            this._pushTimers[code].cancel();
+        this._pushTimers[code] = setInterval(() => {
             this.push(this._baseURL+"api/push/"+code);
         }, interval * 1000);
         this.push(this._baseURL+"api/push/"+code);
     }
 
-    cancelPushing() {
-        if (this._pushTimer)
-            this._pushTimer.cancel();
+    cancelPushing(code = undefined) {
+        if(code) {
+            if (this._pushTimers[code])
+                this._pushTimers[code].cancel();
+        } else {
+            for (let code in this._pushTimers) {
+                if (this._pushTimers.hasOwnProperty(code)) {
+                    this._pushTimers[code].cancel();
+                }
+            }
+        }
     }
 
     async status(name = "default") {
