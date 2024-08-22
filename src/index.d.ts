@@ -10,13 +10,13 @@ export default class UptimeKumaApi {
      * @param code The monitor code
      * @param interval The interval in seconds
      */
-    startPushing(code: string, interval?: number);
+    startPushing(code: string, interval?: number): void;
 
     /**
      * Stops pushing heartbeats to the server
      * @param code The monitor code, if not specified, all monitors will be stopped
      */
-    cancelPushing(code?: string);
+    cancelPushing(code?: string): void;
 
     on(event: "pushSuccessful", handle: (url: string) => void);
     on(event: "pushFailed", handle: (url: string, err: Error) => void);
@@ -41,4 +41,16 @@ export default class UptimeKumaApi {
             }]
         }]
     }]>;
+
+    /**
+     * Initiates websocket connection and logs in
+     * @param login Login used to authenticate
+     * @param password Password used to authenticate
+     */
+    login(login: string, password: string): Promise<void>;
+
+    /**
+     * Gets the size of the database
+     */
+    getDatabaseSize(): Promise<number>;
 }
