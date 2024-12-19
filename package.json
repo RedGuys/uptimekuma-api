@@ -15,7 +15,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/RedGuys/uptimekuma-api"
+    "url": "git+https://github.com/RedGuys/uptimekuma-api.git"
   },
   "dependencies": {
     "axios": "1.6.0",
